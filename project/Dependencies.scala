@@ -8,7 +8,7 @@ object Dependencies {
 
     val trace4cats = "0.12.0"
 
-    val natchez = "0.1.5"
+    val natchez = "0.1.6"
 
     val kindProjector = "0.13.2"
     val betterMonadicFor = "0.3.1"
