@@ -12,7 +12,7 @@ Integration layer for [Trace4Cats] and [Natchez].
 Add it to your `build.sbt`:
 
 ```scala
-"io.janstenpickle" %% "trace4cats-natchez" % "0.12.0"
+"io.janstenpickle" %% "trace4cats-natchez" % "0.13.0"
 ```
 
 ## Contributing
