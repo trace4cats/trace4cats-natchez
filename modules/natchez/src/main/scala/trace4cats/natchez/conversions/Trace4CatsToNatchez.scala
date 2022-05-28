@@ -1,13 +1,13 @@
-package io.janstenpickle.trace4cats.natchez.conversions
+package trace4cats.natchez.conversions
 
 import java.net.URI
 
 import _root_.natchez.{Kernel, Trace => NatchezTrace, TraceValue => V}
 import cats.Applicative
 import cats.syntax.functor._
-import io.janstenpickle.trace4cats.inject.Trace
-import io.janstenpickle.trace4cats.model.AttributeValue.{BooleanValue, DoubleValue, StringValue}
-import io.janstenpickle.trace4cats.natchez.KernelConverter
+import trace4cats.Trace
+import trace4cats.model.AttributeValue.{BooleanValue, DoubleValue, StringValue}
+import trace4cats.natchez.KernelConverter
 
 trait Trace4CatsToNatchez {
   implicit def trace4CatsToNatchez[F[_]: Applicative](implicit trace: Trace[F]): NatchezTrace[F] =

@@ -37,5 +37,5 @@ lazy val natchez = (project in file("modules/natchez"))
   .settings(publishSettings)
   .settings(
     name := "trace4cats-natchez",
-    libraryDependencies ++= Seq(Dependencies.trace4catsInject, Dependencies.natchez)
+    libraryDependencies ++= Seq(Dependencies.trace4catsCore, Dependencies.natchez)
   )
