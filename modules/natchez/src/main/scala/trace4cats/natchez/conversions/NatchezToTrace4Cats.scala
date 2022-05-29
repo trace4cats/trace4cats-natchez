@@ -1,11 +1,10 @@
-package io.janstenpickle.trace4cats.natchez.conversions
+package trace4cats.natchez.conversions
 
 import _root_.natchez.{Trace => NatchezTrace, TraceValue => V}
 import cats.Applicative
 import cats.syntax.foldable._
 import cats.syntax.functor._
-import io.janstenpickle.trace4cats.inject.Trace
-import io.janstenpickle.trace4cats.model.AttributeValue.{
+import trace4cats.model.AttributeValue.{
   BooleanList,
   BooleanValue,
   DoubleList,
@@ -15,9 +14,9 @@ import io.janstenpickle.trace4cats.model.AttributeValue.{
   StringList,
   StringValue
 }
-import io.janstenpickle.trace4cats.model.{AttributeValue, SpanKind, SpanStatus, TraceHeaders}
-import io.janstenpickle.trace4cats.natchez.KernelConverter
-import io.janstenpickle.trace4cats.{ErrorHandler, ToHeaders}
+import trace4cats.model.{AttributeValue, SpanKind, SpanStatus, TraceHeaders}
+import trace4cats.natchez.KernelConverter
+import trace4cats.{ErrorHandler, ToHeaders, Trace}
 
 trait NatchezToTrace4Cats {
   implicit def natchezToTrace4Cats[F[_]: Applicative](implicit trace: NatchezTrace[F]): Trace[F] =

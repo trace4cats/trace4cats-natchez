@@ -1,4 +1,4 @@
-package io.janstenpickle.trace4cats.natchez
+package trace4cats.natchez
 
 import java.net.URI
 
@@ -6,12 +6,11 @@ import _root_.natchez.{Kernel, Span, TraceValue => V}
 import cats.Applicative
 import cats.effect.kernel.{Resource, Sync}
 import cats.syntax.show._
-import io.janstenpickle.trace4cats.ToHeaders
-import io.janstenpickle.trace4cats.model.AttributeValue._
-import io.janstenpickle.trace4cats.model.SpanKind
+import trace4cats.ToHeaders
+import trace4cats.model.AttributeValue._
+import trace4cats.model.SpanKind
 
-final case class Trace4CatsSpan[F[_]: Sync](span: io.janstenpickle.trace4cats.Span[F], toHeaders: ToHeaders)
-    extends Span[F] {
+final case class Trace4CatsSpan[F[_]: Sync](span: trace4cats.Span[F], toHeaders: ToHeaders) extends Span[F] {
   override def put(fields: (String, V)*): F[Unit] =
     span.putAll(fields.map {
       case (k, V.StringValue(v)) => k -> StringValue(v)
@@ -32,9 +31,6 @@ final case class Trace4CatsSpan[F[_]: Sync](span: io.janstenpickle.trace4cats.Sp
 }
 
 object Trace4CatsSpan {
-  def apply[F[_]: Sync](
-    span: Resource[F, io.janstenpickle.trace4cats.Span[F]],
-    toHeaders: ToHeaders
-  ): Resource[F, Span[F]] =
+  def apply[F[_]: Sync](span: Resource[F, trace4cats.Span[F]], toHeaders: ToHeaders): Resource[F, Span[F]] =
     span.map(Trace4CatsSpan(_, toHeaders))
 }

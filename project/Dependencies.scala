@@ -6,7 +6,7 @@ object Dependencies {
     val scala213 = "2.13.8"
     val scala3 = "3.1.2"
 
-    val trace4cats = "0.13.1"
+    val trace4cats = "0.13.1+67-a7d9b849"
 
     val natchez = "0.1.6"
 
@@ -14,7 +14,7 @@ object Dependencies {
     val betterMonadicFor = "0.3.1"
   }
 
-  lazy val trace4catsInject = "io.janstenpickle" %% "trace4cats-inject" % Versions.trace4cats
+  lazy val trace4catsCore = "io.janstenpickle" %% "trace4cats-core" % Versions.trace4cats
 
   lazy val natchez = "org.tpolecat" %% "natchez-core" % Versions.natchez
 
