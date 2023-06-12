@@ -14,7 +14,7 @@ lazy val commonSettings = Seq(
     }
   },
   Test / fork := true,
-  resolvers += Resolver.sonatypeRepo("releases"),
+  resolvers ++= Resolver.sonatypeOssRepo("releases"),
 )
 
 lazy val noPublishSettings =
