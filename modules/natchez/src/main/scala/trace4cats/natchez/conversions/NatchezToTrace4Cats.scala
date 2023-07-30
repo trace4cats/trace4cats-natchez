@@ -1,6 +1,6 @@
 package trace4cats.natchez.conversions
 
-import _root_.natchez.{Trace => NatchezTrace, TraceValue => V}
+import _root_.natchez.{Span, Trace => NatchezTrace, TraceValue => V}
 import cats.Applicative
 import cats.syntax.foldable._
 import cats.syntax.functor._
@@ -16,6 +16,7 @@ import trace4cats.model.AttributeValue.{
 }
 import trace4cats.model.{AttributeValue, SpanKind, SpanStatus, TraceHeaders}
 import trace4cats.natchez.KernelConverter
+import trace4cats.natchez.SpanKindConverter.convert
 import trace4cats.{ErrorHandler, ToHeaders, Trace}
 
 trait NatchezToTrace4Cats {
@@ -34,7 +35,7 @@ trait NatchezToTrace4Cats {
           case (k, LongList(v)) => k -> V.StringValue(v.value.mkString_("[", ", ", "]"))
         }: _*)
       override def span[A](name: String, kind: SpanKind, errorHandler: ErrorHandler)(fa: F[A]): F[A] =
-        trace.span(name)(fa)
+        trace.span(name, Span.Options.Defaults.withSpanKind(convert(kind)))(fa)
       override def headers(toHeaders: ToHeaders): F[TraceHeaders] = trace.kernel.map(KernelConverter.from)
       override def setStatus(status: SpanStatus): F[Unit] = Applicative[F].unit
       override def traceId: F[Option[String]] = trace.traceId
